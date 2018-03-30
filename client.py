@@ -7,6 +7,7 @@ def main():
     IP , PORT = sys.argv[1] , int(sys.argv[2])
     sock.connect((IP,PORT))
     while True:
+        message=""
         sockList = [sys.stdin , sock]
         read , write , error   = select.select(sockList,list(),list())
         for s in read:
@@ -19,7 +20,7 @@ def main():
 
                 # print('*')      #For Debugging
             message = sys.stdin.readline()
-            if len(message)!=0:
+            if len(message)!=0 and message!="":
                 sock.send(message.encode('utf-8'))
                 sys.stdout.write("(You):" + message)
                 sys.stdout.flush()
