@@ -27,12 +27,10 @@ def new_client(con,addr):
 def broadcast(message , con , addr):
     global connections
     for clients in connections:
-        #print('#')        #For Debbuging
         if clients != con:
             try:
                 outbox = '('.encode('utf-8')+addr+') '.encode('utf-8') + message
                 clients.send(outbox)
-                # print('!')  #For Debugging
             except:
                 clients.close()
                 remove(clients)
@@ -58,6 +56,7 @@ def main():
 
     con.close()
     sock.close()
+
 if __name__ == '__main__':
     if len(sys.argv) != 3:
         print("Usage : Script IP PORT")

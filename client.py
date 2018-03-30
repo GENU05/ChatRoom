@@ -12,10 +12,14 @@ def main():
         for s in read:
             if s == sock:
                 message = s.recv(2048)
-                print(message.decode('utf-8'))
-            else:
+                var = message.decode('utf-8')
+                if len(var)!=0:
+                    print(message.decode('utf-8'))
+
+
                 # print('*')      #For Debugging
-                message = sys.stdin.readline()
+            message = sys.stdin.readline()
+            if len(message)!=0:
                 sock.send(message.encode('utf-8'))
                 sys.stdout.write("(You):" + message)
                 sys.stdout.flush()
