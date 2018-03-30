@@ -9,16 +9,19 @@ def main():
     while True:
         sockList = [sys.stdin , sock]
         read , write , error   = select.select(sockList,list(),list())
-        for s in read:
+        for s in sockList:
             if s == sock:
-                message = s.recv(2048)
-                print(message.decode('utf-8'))
-            else:
-                # print('*')      #For Debugging
-                message = sys.stdin.readline()
-                sock.send(message.encode('utf-8'))
-                sys.stdout.write("(You : )" + message)
-                sys.stdout.flush()
+                try:
+                    message = s.recv(2048)
+                except:
+                    pass
+                if message:
+                    print(message.decode('utf-8'))
+                else:
+                    message = sys.stdin.readline()
+                    sock.send(message.encode('utf-8'))
+                    sys.stdout.write("(You : )" + message)
+                    sys.stdout.flush()
     sock.close()
 
 
