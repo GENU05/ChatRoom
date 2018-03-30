@@ -30,9 +30,9 @@ def broadcast(message , con , addr):
         #print('#')        #For Debbuging
         if clients != con:
             try:
-                outbox = '('+addr+') ' + message
-                clients.send(str.encode(outbox))
-                print('!')  #For Debugging
+                outbox = '('.encode('utf-8')+addr+') '.encode('utf-8') + message
+                clients.send(outbox)
+                # print('!')  #For Debugging
             except:
                 clients.close()
                 remove(clients)

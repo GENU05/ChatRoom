@@ -17,7 +17,7 @@ def main():
                 # print('*')      #For Debugging
                 message = sys.stdin.readline()
                 sock.send(message.encode('utf-8'))
-                sys.stdout.write("(You : )" + message)
+                sys.stdout.write("(You):" + message)
                 sys.stdout.flush()
     sock.close()
 
