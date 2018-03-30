@@ -15,7 +15,7 @@ def new_client(con,addr):
          try:
              message = con.recv(2048) #max size of message 2048
              if message:
-                 print("(" , addr[0] , ") : " , message)
+                 print("(" , addr[0] , ") : " , message.decode('utf-8'))
                  broadcast(message,con,addr[0])
              else:
                 remove(con) #Broken connection ==> Terminate
