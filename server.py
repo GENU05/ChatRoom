@@ -32,7 +32,7 @@ def broadcast(message , con , addr):
             try:
                 outbox = '('+addr+') ' + message
                 clients.send(str.encode(outbox))
-                print('!')
+                print('!')  #For Debugging
             except:
                 clients.close()
                 remove(clients)
@@ -46,7 +46,7 @@ def main():
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     IP , PORT = sys.argv[1] , int(sys.argv[2])
     sock.bind((IP,PORT))
-    sock.listen(10)  # 1 connection at a time
+    sock.listen(100)  # 100 connection at a time
 
     while True:
         con , addr = sock.accept()

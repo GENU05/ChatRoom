@@ -5,4 +5,4 @@ Python based simple chatroom
   python3 server.py IP PORT
 
 --Using Client--
-  python3 client.py IP PORT
+   python3 client.py IP PORT
