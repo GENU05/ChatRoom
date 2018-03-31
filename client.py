@@ -7,22 +7,17 @@ def main():
     IP , PORT = sys.argv[1] , int(sys.argv[2])
     sock.connect((IP,PORT))
     while True:
-        message=""
         sockList = [sys.stdin , sock]
-        read , write , error   = select.select(sockList,list(),list())
+        read , write , error   = select.select(sockList,[],[])
         for s in read:
             if s == sock:
                 message = s.recv(2048)
-                var = message.decode('utf-8')
-                if len(var)!=0:
-                    print(message.decode('utf-8'))
-
-
-                # print('*')      #For Debugging
-            message = sys.stdin.readline()
-            if len(message)!=0 and message!="":
+                print(message.decode('utf-8'))
+            else:
+                message = sys.stdin.readline()
                 sock.send(message.encode('utf-8'))
-                sys.stdout.write("(You):" + message)
+                sys.stdout.write("(You):")
+                sys.stdout.write(message)
                 sys.stdout.flush()
     sock.close()
 
