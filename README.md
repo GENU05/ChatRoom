@@ -8,6 +8,10 @@ python3 server.py IP PORT
 ## --Using Client--
 
  python3 client.py IP PORT
+ 
+ OR
+ 
+ telnet IP PORT
 
  --------
  
