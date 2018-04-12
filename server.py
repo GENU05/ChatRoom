@@ -8,8 +8,9 @@ connections = []    #active clients
 
 def new_client(con,addr):
     try:
-        con.send('Welcome\n'.encode('utf-8'))
-        broadcast(' Joined\n'.encode('utf-8'),con,addr[0])
+        pass
+        # con.send('Welcome\n'.encode('utf-8'))
+        # broadcast(' Joined\n'.encode('utf-8'),con,addr[0])
     except:
         pass
     while True:
