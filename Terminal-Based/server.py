@@ -8,9 +8,7 @@ connections = []    #active clients
 
 def new_client(con,addr):
     try:
-        pass
-        # con.send('Welcome\n'.encode('utf-8'))
-        # broadcast(' Joined\n'.encode('utf-8'),con,addr[0])
+        con.send(bytes('Welcome'))
     except:
         pass
     while True:
@@ -20,21 +18,19 @@ def new_client(con,addr):
                  print("(" , addr[0] , ") : " , message.decode('utf-8'))
                  broadcast(message,con,addr[0])
              else:
-                 remove(con) #Broken connection ==> Terminate
-                 print("Removing : " , addr[0])
-                 message = ' left \n'
-                 broadcast(message.encode('utf-8'),con,addr[0])
-                 return 0
+                remove(con) #Broken connection ==> Terminate
+                print("Removing : " , addr[0])
+                return 0
          except:
+            # print('*')      #For Debbugin purpose
             continue
-
 def broadcast(message , con , addr):
     global connections
-    outbox = '(' + addr +') ' + message.decode('utf-8')     #Its a string
     for clients in connections:
         if clients != con:
             try:
-                clients.send(outbox.encode('utf-8'))
+                outbox = '('.encode('utf-8')+addr+') '.encode('utf-8') + message
+                clients.send(outbox)
             except:
                 clients.close()
                 remove(clients)
